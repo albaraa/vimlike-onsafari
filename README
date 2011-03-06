@@ -1,5 +1,9 @@
 fork of vimlike-onsafari by ArcCosine, a Safari Extension that adds Vim keybindings to Safari.
 
+Instructions:
+* To download, just click on / right-click save 'vimlike.safariextz' then double click on the file to install
+* To make changes, clone or download the repository, make your edits in 'vimlike.js', and use the Safari Extension Builder (in the Develop menu) to compile. This is as easy as adding the project folder using the '+' in the lower left and clicking "build package...". You will need a free Safari Developer license, which can be obtained at http://developer.apple.com/ (actually a fairly annoying process, but there are guides to be found)
+
 Changes:
 * made the mode display more appealing by trying to match the look of the Safari status bar. Fade out time is sped up and the display is completely transparent except on change and on mouseover. Designed to look best with the status bar turned off for when using the Invisible Status Bar (popup status bar) extension with the Safari theme.
 * played around with making the "hit a hint" function look nicer, but left it as is for now
