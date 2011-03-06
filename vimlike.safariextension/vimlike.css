@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+/* Safari Style */
+
+/*#VIMLIKE_MODE_DIV{*/
+/*bottom : 0px;*/
+/*right : 0px;*/
+/*width : 80px;*/
+/*padding : 2px 0px 3px 0px;*/
+/*background-color : #aaa;*/
+/*color : #000;*/
+/*font-size: 8pt;*/
+/*font-family : Helvetica, Arial;*/
+/*text-shadow : 0px 1px 0px #ccc;*/
+/*position : fixed;*/
+/*border-radius : 0px;*/
+/*z-index : 100;*/
+/*border-top : 1px solid #444;*/
+/*border-left : 1px solid #444;*/
+/*opacity: 0.0;*/
+/*text-align : center;*/
+/*}*/
+
+/* Vim Style */
+
+  #VIMLIKE_MODE_DIV{
+  bottom : 0px;
+  right : 0px;
+  width : 80px;
+  background-color : #66ff66;
+  color : #000;
+  font-size: 10px;
+  font-family : monospace;
+  position : fixed;
+  z-index : 100;
+  opacity : 0.0;
+  text-align : center;
+}

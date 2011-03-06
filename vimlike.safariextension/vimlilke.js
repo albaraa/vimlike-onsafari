@@ -1,5 +1,6 @@
+(function(_doc,_win){
 var VIMLIKE = {
-hintText: 'asdfghjkl',
+hintText: '',
 mode : 'normal',
 interval: 30,
 handler: {
@@ -12,11 +13,18 @@ handler: {
   'l'  : function(){ VIMLIKE.scrollright(); },
   'gg' : function(){ VIMLIKE.scrollTop(); },
   'S-g': function(){ VIMLIKE.scrollBottom(); },
+  't' : function(){ VIMLIKE.openNewTab(); },
+  'u' : function(){ VIMLIKE.reopenTab(); },
   'gt' : function(){ VIMLIKE.nextTab(); },
+  'S-k' : function(){ VIMLIKE.nextTab(); },
   'gS-t': function(){ VIMLIKE.previousTab(); },
+  'S-j': function(){ VIMLIKE.previousTab(); },
   'd' : function(){ VIMLIKE.closeTab(); },
+  'C-w' : function(){ VIMLIKE.closeTab(); },
   'r' : function(){ VIMLIKE.reload(); },
-  'f' : function(){ VIMLIKE.hah(); },
+  'f' : function(){ VIMLIKE.hah(true); },
+  '/' : function(){ VIMLIKE.hah(true); },
+  'S-f' : function(){ VIMLIKE.hah(false); },
   'S-h' : function(){ VIMLIKE.historyBack(); },
   'S-l' : function(){ VIMLIKE.historyForward(); },
   'escape' : function(){ VIMLIKE.blurFocus(); },
@@ -34,9 +42,12 @@ keyEvent: function(e){
   if( t.nodeType == 1 ){
      var tn = t.tagName.toLowerCase();
      var pressKey = VIMLIKE.kc2char(e.keyCode || e.charCode);
+     if( pressKey == 191 ) pressKey = '/'; //I want more good code :(
      if( e.ctrlKey ){ pressKey = 'C-' + pressKey; }
      if( e.shiftKey ){ pressKey = 'S-' + pressKey; }
      if( e.altKey ){ pressKey = 'A-' + pressKey; }
+      // prevent false positives when using the Command-key:
+     if( e.metaKey ){ pressKey = 'M-' + pressKey; }
      if( pressKey == 'S-shift' ){ //don't use :)
        return;
      }
@@ -79,22 +90,22 @@ keyEvent: function(e){
   }
 },
 pagedown: function(){
-  scroll(0, window.pageYOffset + (VIMLIKE.interval*10));
+  scroll(0, _win.pageYOffset + (VIMLIKE.interval*10));
 },
 pageup: function(){
-  scroll(0, window.pageYOffset - (VIMLIKE.interval*10));
+  scroll(0, _win.pageYOffset - (VIMLIKE.interval*10));
 },
 scrolldown: function(){
-  scroll(0, window.pageYOffset + VIMLIKE.interval);
+  scroll(0, _win.pageYOffset + VIMLIKE.interval);
 },
 scrollup: function(){
-  scroll(0, window.pageYOffset - VIMLIKE.interval);
+  scroll(0, _win.pageYOffset - VIMLIKE.interval);
 },
 scrollTop: function(){
-  scroll(0, -document.documentElement.scrollHeight)
+  scroll(0, -_doc.documentElement.scrollHeight)
 },
 scrollBottom: function(){
-  scroll(0, document.documentElement.scrollHeight)
+  scroll(0, _doc.documentElement.scrollHeight)
 },
 scrollleft: function(){
   scrollBy(-VIMLIKE.interval, 0);
@@ -102,21 +113,29 @@ scrollleft: function(){
 scrollright: function(){
   scrollBy(VIMLIKE.interval, 0);
 },
+openNewTab: function(){
+  safari.self.tab.dispatchMessage('vimlike','open');
+},
+openBackGround:function(url){
+  safari.self.tab.dispatchMessage('vimlike', {background:url});
+},
+reopenTab: function(){
+  safari.self.tab.dispatchMessage('vimlike','reopen');
+},
 previousTab: function(){
-  safari.self.tab.dispatchMessage('changeTab','previous');
+  safari.self.tab.dispatchMessage('vimlike','previous');
 },
 nextTab: function(){
-  safari.self.tab.dispatchMessage('changeTab','next');
+  safari.self.tab.dispatchMessage('vimlike','next');
 },
 closeTab: function(){
-  safari.self.tab.dispatchMessage('changeTab','close');
+  safari.self.tab.dispatchMessage('vimlike','close');
 },
 reload: function(){
   location.reload();
 },
-hah: function(){
+hah: function(isCurrent){
     var hintKeys = new String(VIMLIKE.hintText).toUpperCase();
-    //var selector = 'a[href]:not([href^="mailto:"]), input:not([type="hidden"]), textarea, select, img[onclick], button';
     var xpath = '//a[@href]|//input[not(@type=\x22hidden\x22)]|//textarea|//select|//img[@onclick]|//button';
     var hintColor = '\x23ffff00';
     var hintColorForm = '\x2300ffff';
@@ -176,8 +195,8 @@ hah: function(){
       var inWidth = win.innerWidth;
       var inHeight = win.innerHeight
 
-      var df = document.createDocumentFragment();
-      var div = df.appendChild(document.createElement('div'));
+      var df = _doc.createDocumentFragment();
+      var div = df.appendChild(_doc.createElement('div'));
       div.id = hintContainerId;
 
       var spanStyle = {
@@ -191,14 +210,13 @@ hah: function(){
         'margin' : '0px',
         'opacity' : '1.0'
       };
-      //var elems = Array.prototype.slice.call(win.document.querySelectorAll(selector));
       var elems = getXPathElements(win);
       elems.forEach(function(elem){
         var pos = getAbsolutePosition(elem, html, body, inWidth, inHeight );
         if( pos == false ) return;
         var hint = createText(k);
         var span = win.document.createElement('span');
-        span.appendChild(document.createTextNode(hint));
+        span.appendChild(_doc.createTextNode(hint));
         var st = span.style;
         for( key in spanStyle ){
           st[key] = spanStyle[key];
@@ -227,6 +245,13 @@ hah: function(){
           if( lastMatchHint.element.type == 'text' ){
             eve.preventDefault();
             eve.stopPropagation();
+          }
+          if( !isCurrent ){
+            if( /https?:\/\//.test(lastMatchHint.element.href) ){
+              eve.preventDefault();
+              eve.stopPropagation();
+              VIMLIKE.openBackGround(lastMatchHint.element.href);
+            }
           }
           resetInput();
           removeHints();
@@ -263,7 +288,7 @@ hah: function(){
 
     function removeHints(){
       var frame = top.frames;
-      if( !document.getElementsByTagName('frameset')[0]){
+      if( !_doc.getElementsByTagName('frameset')[0]){
         end(top);
       }
       Array.prototype.forEach.call(frame, function(elem){
@@ -301,9 +326,9 @@ hah: function(){
 
     function hahDraw(){
       
-      var frame = window.frames;
-      if(!document.getElementsByTagName('frameset')[0]){
-        start(window);
+      var frame = _win.frames;
+      if(!_doc.getElementsByTagName('frameset')[0]){
+        start(_win);
       }else{
         Array.prototype.forEach.call(frame, function(elem){
           try{
@@ -325,7 +350,7 @@ historyForward: function(){
     history.forward();
 },
 blurFocus: function(){
-  document.activeElement.blur();
+  _doc.activeElement.blur();
 },
 modechange: function(){
   switch(VIMLIKE.mode){
@@ -338,7 +363,7 @@ modechange: function(){
     default:
       VIMLIKE.mode = 'normal';
   }
-  var modeDiv = document.getElementById('VIMLIKE_MODE_DIV');
+  var modeDiv = _doc.getElementById('VIMLIKE_MODE_DIV');
   if( modeDiv ){
     modeDiv.innerHTML = VIMLIKE.mode;
     var fadeOut = function(opa){
@@ -348,7 +373,7 @@ modechange: function(){
         modeDiv.style.opacity = 0.0;
         return;
       }
-      setTimeout( function(){ fadeOut(opa); },50);
+      setTimeout( function(){ fadeOut(opa); },70);
     }
     fadeOut(100);
   }
@@ -365,7 +390,7 @@ kc2char: function(kc){
      16 : "shift",
      17 : "control",
      27 : "escape",
-     46 : "delete",
+     46 : "delete"
    };
    return (between(65,90)  ? String.fromCharCode(kc+32) : // a-z
            between(48,57)  ? String.fromCharCode(kc) :    // 0-9
@@ -375,54 +400,37 @@ kc2char: function(kc){
 },
 init: function(){
   for( var key in VIMLIKE.handler){
-    if( key.length > 1 && !(/S-|C-|A-|escape/.test(key))){
+    if( key.length > 1 && !(/S-|C-|A-|M-|escape/.test(key))){
       VIMLIKE.firstStroke[key[0]] = true;
     }
   }
   VIMLIKE.createModeDiv();
+  safari.self.tab.dispatchMessage('vimlike','load');
 
 },
 createModeDiv: function(){
-  var modeDiv = document.createElement('div');
+  var modeDiv = _doc.createElement('div');
   modeDiv.id = 'VIMLIKE_MODE_DIV';
-  var styles = {
-    'bottom': '0px',
-    'right' : '0px',
-    'width' : '80px',
-    'padding' : '1px 0px 2px 0px',
-    'backgroundColor' : '#aaa',
-    'color' : '#000',
-    'fontSize' : '8pt',
-    'fontFamily' : 'Arial',
-    'textShadow' : '0px 1px 0px #ccc',
-    'position' : 'fixed',
-    'borderRadius' : '1px',
-    'zIndex' : '100',
-    'border' : '1px solid #666',
-    'opacity' : '0.0',
-    'textAlign' : 'center'
-  };
-  for( var key in styles ){
-    modeDiv.style[key] = styles[key];
-  }
   modeDiv.innerHTML = VIMLIKE.mode;
-  modeDiv.addEventListener('mouseover', function(){
-    this.style.opacity = '1.0';
-  },false );
-  modeDiv.addEventListener('mouseout', function(){
-    this.style.opacity = '0.0';
-  },false );
-  document.body.appendChild(modeDiv);
+  modeDiv.addEventListener('mouseover', function(){ this.style.opacity = '1.0'; },false );
+  modeDiv.addEventListener('mouseout', function(){ this.style.opacity = '0.0'; },false );
+  modeDiv.addEventListener('click', function(){ VIMLIKE.modechange(); }, false );
+  _doc.body.appendChild(modeDiv);
 }
 
 }
-
 
 VIMLIKE.init(); 
-document.addEventListener( 'keydown', function(e){ VIMLIKE.keyEvent(e); },false);
+_doc.addEventListener( 'keydown', function(e){ VIMLIKE.keyEvent(e); },false);
 
-/*safari.self.addEventListener( 'message', function(e){
-  if( e.name === 'hintMessage' ){
+if( typeof _win.VIMLIKE == "undefined" ){
+  _win.VIMLIKE = VIMLIKE;
+}
+
+safari.self.addEventListener( 'message', function(e){
+  if( e.name === 'hintText' ){
     VIMLIKE.hintText = e.message;
   }
-},false );*/
+},false );
+
+})(document,window);
