@@ -1,0 +1,32 @@
+fork of vimlike-onsafari by ArcCosine, a Safari Extension that adds Vim keybindings to Safari.
+
+Changes:
+* made the mode display more appealing by trying to match the look of the Safari status bar. Fade out time is sped up and the display is completely transparent except on change and on mouseover. Designed to look best with the status bar turned off for when using the Invisible Status Bar (popup status bar) extension with the Safari theme.
+* played around with making the "hit a hint" function look nicer, but left it as is for now
+
+normal mode
+
+Key function
+h   ←
+j   ↓
+k   ↑
+l   →
+C-d PageDown
+C-u PageUp
+Esc Focus Page
+C-[ Focus Page
+gg  Go To Page Top
+G   Go To Page End
+gt  Focus next tab
+K   Focus previous tab
+gT  Focus previous tab
+J   Focus next tab
+H   History back
+L   History forward
+f   Hit a Hint(Use asdfhcpe change mode(useonline mode)
+
+useonline mode
+"Shortcuts page in the online Sfhit + Esc shortcut you can use online by pressing(Google Reader, Gmail, ...) [not sure what this means]
+
+Key function
+S-Escape    change mode (normal mode)
