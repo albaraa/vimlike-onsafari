@@ -1,5 +1,7 @@
 fork of vimlike-onsafari by ArcCosine, a Safari Extension that adds Vim keybindings to Safari.
 
+NOTE: I accidentally forked an older version of vimlike, hence blocking of the "CMD+L" and "CMD+F" commands. I'm in the process of merging the changes into the newer version.
+
 Instructions:
 * To download, just click on / right-click save 'vimlike.safariextz' then double click on the file to install
 * To make changes, clone or download the repository, make your edits in 'vimlike.js', and use the Safari Extension Builder (in the Develop menu) to compile. This is as easy as adding the project folder using the '+' in the lower left and clicking "build package...". You will need a free Safari Developer license, which can be obtained at http://developer.apple.com/ (actually a fairly annoying process, but there are guides to be found)
@@ -34,3 +36,6 @@ useonline mode
 
 Key function
 S-Escape    change mode (normal mode)
+
+TODO:
+* vimlike currently blocks 'CMD+L' and 'CMD+F'

@@ -389,7 +389,7 @@ createModeDiv: function(){
     'bottom': '0px',
     'right' : '0px',
     'width' : '80px',
-    'padding' : '2px 1px 3px 1px',
+    'padding' : '1px 0px 2px 0px',
     'backgroundColor' : '#aaa',
     'color' : '#000',
     'fontSize' : '8pt',
