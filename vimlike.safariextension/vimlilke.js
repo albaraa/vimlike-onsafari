@@ -20,7 +20,6 @@ handler: {
   'S-h' : function(){ VIMLIKE.historyBack(); },
   'S-l' : function(){ VIMLIKE.historyForward(); },
   'escape' : function(){ VIMLIKE.blurFocus(); },
-  'jk' : function(){ VIMLIKE.blurFocus(); },
   'C-[' : function(){ VIMLIKE.blurFocus(); }
 },
 formHandler:{
