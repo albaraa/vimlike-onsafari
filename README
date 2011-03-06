@@ -1,5 +1,9 @@
 fork of vimlike-onsafari by ArcCosine, a Safari Extension that adds Vim keybindings to Safari.
 
+vimlike-onsafari provides vim keybindings for Safari including page navigation hyperlink selection. Vimlike can be disabled per page and is automatically disabled on websites that use vim keybindings like Gmail and Google Reader.
+
+vim.safariextension by mutle provides a subset of the features of vimlike-onsafari (and is annoyingly not disabled on Gmail, etc.): https://github.com/mutle/vim.safariextension
+
 Instructions:
 * To download, just click on / right-click save 'vimlike.safariextz' then double click on the file to install
 * To make changes, clone or download the repository, make your edits in 'vimlike.js', and use the Safari Extension Builder (in the Develop menu) to compile. This is as easy as adding the project folder using the '+' in the lower left and clicking "build package...". You will need a free Safari Developer license, which can be obtained at http://developer.apple.com/ (actually a fairly annoying process, but there are guides to be found)
