@@ -34,7 +34,7 @@ gT  Focus previous tab
 J   Focus next tab
 t   Open new tab
 u   Reopen tab
-C-w Close tabe
+C-w Close tab
 d   Close tab
 r   Reload
 H   History back
