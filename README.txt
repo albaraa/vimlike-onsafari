@@ -1,6 +1,6 @@
 fork of vimlike-onsafari by ArcCosine, a Safari Extension that adds Vim keybindings to Safari.
 
-vimlike-onsafari provides vim keybindings for Safari including page navigation hyperlink selection. Vimlike can be disabled per page and is automatically disabled on websites that use vim keybindings like Gmail and Google Reader.
+vimlike-onsafari provides vim keybindings for Safari including page navigation hyperlink selection. Vimlike can be disabled per page and is automatically disabled on some websites that use vim keybindings like Gmail.
 
 vim.safariextension by mutle provides a subset of the features of vimlike-onsafari (and is annoyingly not disabled on Gmail, etc.): https://github.com/mutle/vim.safariextension
 
@@ -17,7 +17,7 @@ Changes:
 
 Documentation:
 
-normal mode
+(normal mode)
 
 Key function
 h   ←
@@ -45,8 +45,7 @@ f   Hit a Hint (Use asdfgh change mode (useonline mode))
 /   Hit a Hint
 F   Deactivate Hit a Hint
 
-useonline mode
-"Shortcuts page in the online Shift + Esc shortcut you can use online by pressing (Google Reader, Gmail, ...)
+(useonline mode)
 
 Key function
 S-Escape    change mode (normal mode)
