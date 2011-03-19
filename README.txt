@@ -5,8 +5,8 @@ vimlike-onsafari provides vim keybindings for Safari including page navigation h
 vim.safariextension by mutle provides a subset of the features of vimlike-onsafari (and is annoyingly not disabled on Gmail, etc.): https://github.com/mutle/vim.safariextension
 
 Instructions:
-* To download, just click on / right-click save 'vimlike.safariextz' then double click on the file to install
-* To make changes, clone or download the repository, make your edits in 'vimlike.js', and use the Safari Extension Builder (in the Develop menu) to compile. This is as easy as adding the project folder using the '+' in the lower left and clicking "build package...". You will need a free Safari Developer license, which can be obtained at http://developer.apple.com/ (actually a fairly annoying process, but there are guides to be found)
+* To DOWNLOAD, click "Downloads" or go here: https://github.com/msutherl/vimlike-onsafari/archives/master then download "vimlike.safariextz" under "Download Packages"
+* To MAKE CHANGES, clone or download the source, make your edits in 'vimlike.js', and use the Safari Extension Builder (in the Develop menu) to compile. This is as easy as adding the project folder using the '+' in the lower left and clicking "build package...". You will need a free Safari Developer license, which can be obtained at http://developer.apple.com/ (actually a fairly annoying process, but there are guides to be found)
 
 Changes:
 * mode display now matches the style of "hit a hint" feature + updated Key functions documentation
