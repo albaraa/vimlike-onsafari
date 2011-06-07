@@ -363,20 +363,20 @@ modechange: function(){
     default:
       VIMLIKE.mode = 'normal';
   }
-  var modeDiv = _doc.getElementById('VIMLIKE_MODE_DIV');
-  if( modeDiv ){
-    modeDiv.innerHTML = VIMLIKE.mode;
-    var fadeOut = function(opa){
-      modeDiv.style.opacity = opa/100;
-      opa -= 10;
-      if( opa < 10 ){
-        modeDiv.style.opacity = 0.0;
-        return;
-      }
-      setTimeout( function(){ fadeOut(opa); },70);
-    }
-    fadeOut(100);
-  }
+  /*var modeDiv = _doc.getElementById('VIMLIKE_MODE_DIV');*/
+  /*if( modeDiv ){*/
+  /*modeDiv.innerHTML = VIMLIKE.mode;*/
+  /*var fadeOut = function(opa){*/
+  /*modeDiv.style.opacity = opa/100;*/
+  /*opa -= 10;*/
+  /*if( opa < 10 ){*/
+  /*modeDiv.style.opacity = 0.0;*/
+  /*return;*/
+  /*}*/
+  /*setTimeout( function(){ fadeOut(opa); },70);*/
+  /*}*/
+  /*fadeOut(100);*/
+  /*}*/
 },
 kc2char: function(kc){
    function between(a,b){
