@@ -15,9 +15,10 @@ vim.safariextension by mutle provides a subset of the features of vimlike-onsafa
 
 ## Changes
 
+* disabled GUI notification on mode switch (gotta keep it clean) – code is just commented out if you want to reenable
 * updated Key functions documentation
-* made a new display style that's more spartan and vim-like (monospace font, no border, green background). "Safari-style" is left commented out in the .css file. 
-* made the mode display more appealing by trying to match the look of the Safari status bar. Fade out time is sped up and the display is completely transparent except on change and on mouseover. Designed to look best with the status bar turned off for when using the Invisible Status Bar (popup status bar) extension with the Safari theme.
+* <strike>made a new display style that's more spartan and vim-like (monospace font, no border, green background). "Safari-style" is left commented out in the .css file.</strike>
+* <strike>made the mode display more appealing by trying to match the look of the Safari status bar. Fade out time is sped up and the display is completely transparent except on change and on mouseover. Designed to look best with the status bar turned off for when using the Invisible Status Bar (popup status bar) extension with the Safari theme.</strike>
 
 ## Documentation
 
