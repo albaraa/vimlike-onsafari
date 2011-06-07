@@ -11,11 +11,11 @@ vim.safariextension by mutle provides a subset of the features of vimlike-onsafa
 ## Install
 
 * To DOWNLOAD, click "Downloads" or go here: https://github.com/msutherl/vimlike-onsafari/archives/master then download "vimlike.safariextz" under "Download Packages"
-* To MAKE CHANGES, clone or download the source, make your edits in 'vimlike.js', and use the Safari Extension Builder (in the Develop menu) to compile. This is as easy as adding the project folder using the '+' in the lower left and clicking "build package...". You will need a free Safari Developer license, which can be obtained at http://developer.apple.com/ (actually a fairly annoying process, but there are guides to be found)
+* To MAKE CHANGES, clone or download the source, make your edits in 'vimlike.js', and use the Safari Extension Builder (in the Develop menu) to compile. This is as easy as adding the project folder using the '+' in the lower left and clicking "build package...". You will need a free Safari Developer license, which can be obtained at http://developer.apple.com/ (an annoying process, but there are guides to be found)
 
 ## Changes
 
-* disabled GUI notification on mode switch (gotta keep it clean) – code is just commented out if you want to reenable
+* disabled GUI notification on mode switch because the styling is never quite consistent and looks ugly – code is just commented out if you want to reenable
 * updated Key functions documentation
 * <strike>made a new display style that's more spartan and vim-like (monospace font, no border, green background). "Safari-style" is left commented out in the .css file.</strike>
 * <strike>made the mode display more appealing by trying to match the look of the Safari status bar. Fade out time is sped up and the display is completely transparent except on change and on mouseover. Designed to look best with the status bar turned off for when using the Invisible Status Bar (popup status bar) extension with the Safari theme.</strike>
