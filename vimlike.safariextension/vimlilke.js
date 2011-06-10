@@ -404,19 +404,19 @@ init: function(){
       VIMLIKE.firstStroke[key[0]] = true;
     }
   }
-  VIMLIKE.createModeDiv();
+  /*VIMLIKE.createModeDiv();*/
   safari.self.tab.dispatchMessage('vimlike','load');
 
 },
-createModeDiv: function(){
-  var modeDiv = _doc.createElement('div');
-  modeDiv.id = 'VIMLIKE_MODE_DIV';
-  modeDiv.innerHTML = VIMLIKE.mode;
-  modeDiv.addEventListener('mouseover', function(){ this.style.opacity = '1.0'; },false );
-  modeDiv.addEventListener('mouseout', function(){ this.style.opacity = '0.0'; },false );
-  modeDiv.addEventListener('click', function(){ VIMLIKE.modechange(); }, false );
-  _doc.body.appendChild(modeDiv);
-}
+  /*createModeDiv: function(){*/
+  /*var modeDiv = _doc.createElement('div');*/
+  /*modeDiv.id = 'VIMLIKE_MODE_DIV';*/
+  /*modeDiv.innerHTML = VIMLIKE.mode;*/
+  /*modeDiv.addEventListener('mouseover', function(){ this.style.opacity = '1.0'; },false );*/
+  /*modeDiv.addEventListener('mouseout', function(){ this.style.opacity = '0.0'; },false );*/
+  /*modeDiv.addEventListener('click', function(){ VIMLIKE.modechange(); }, false );*/
+  /*_doc.body.appendChild(modeDiv);*/
+  /*}*/
 
 }
 
