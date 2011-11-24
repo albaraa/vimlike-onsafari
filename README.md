@@ -4,7 +4,7 @@ fork of vimlike-onsafari by ArcCosine, a Safari Extension that adds Vim keybindi
 
 ## Overview
 
-NOTE: I've been told that this softare no longer works with the latest version of Safari (5.1.1). If this is the case, I have no intention to fix it. Please feel free to fork and fix should you desire a working version.
+**NOTE: I've been told that this softare no longer works with the latest version of Safari (5.1.1). If this is the case, I have no intention to fix it. Please feel free to fork and fix should you desire a working version.**
 
 vimlike-onsafari provides vim keybindings for Safari including page navigation hyperlink selection. Vimlike can be disabled per page and is automatically disabled on websites that use vim keybindings like Gmail and Google Reader.
 
